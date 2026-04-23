@@ -82,13 +82,6 @@ streamlit run app.py
 | admin    | 1234     |
 | hammad   | edu123   |
 
----
-
-## 📸 Screens (Optional)
-
-You can add screenshots here later to show UI.
-
----
 
 ## 🎯 Future Improvements
 
