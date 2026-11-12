@@ -1,3 +1,5 @@
+import hmac
+
 import streamlit as st
 import pandas as pd
 
@@ -21,10 +23,29 @@ if "logged_in" not in st.session_state:
 # USER AUTHENTICATION DATABASE
 # -------------------------------
 
-users = {
+# Real logins come from Streamlit secrets (.streamlit/secrets.toml):
+#   [users]
+#   alice = "a-strong-password"
+# With no secrets configured the app runs in DEMO MODE using the public
+# accounts below. They protect nothing, so never reuse them anywhere real.
+DEMO_USERS = {
     "admin": "@1234",
     "Hammad": "edu123"
 }
+
+
+def load_users():
+    """Return (users, is_demo_mode)."""
+    try:
+        configured = dict(st.secrets["users"])
+        if configured:
+            return configured, False
+    except Exception:
+        pass
+    return DEMO_USERS, True
+
+
+users, DEMO_MODE = load_users()
 
 
 # -------------------------------
@@ -119,12 +140,15 @@ def login():
 
     st.subheader("Login to Continue")
 
+    if DEMO_MODE:
+        st.info("Demo mode: log in with `admin` / `@1234`.")
+
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
 
-        if username in users and users[username] == password:
+        if username in users and hmac.compare_digest(str(users[username]).encode(), password.encode()):
 
             st.session_state.logged_in = True
             st.success("Login Successful")

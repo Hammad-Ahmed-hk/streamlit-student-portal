@@ -1,104 +1,73 @@
-# 🎓 EduSphere Streamlit App
+# 🎓 EduSphere Smart Portal
 
-## 📌 Overview
+A student management web app built with [Streamlit](https://streamlit.io/). Add students, record marks, calculate grades and GPA, search by ID and review an activity log, behind a login screen.
 
-EduSphere is a simple and interactive student management system built using Streamlit.
-It allows users to manage student records, calculate grades, and track basic academic data in a clean web interface.
+It is a learning project that applies object-oriented programming (encapsulation, inheritance, abstraction and polymorphism) to a small, practical app.
 
-This project demonstrates core programming concepts such as object-oriented programming, session management, and user authentication.
+## Features
 
----
+- 🔐 Login screen (see [Logging in](#logging-in))
+- ➕ Add student records
+- 📋 View all students
+- 🔎 Search a student by ID
+- 📊 Automatic grade and GPA calculation
+- 📜 Activity log
 
-## 🚀 Features
+## Concepts demonstrated
 
-* 🔐 User Login System
-* ➕ Add Student Records
-* 📋 View All Students
-* 🔎 Search Student by ID
-* 📊 Automatic Grade & GPA Calculation
-* 📜 Activity Logs Tracking
-* 🎯 Simple and user-friendly interface
+| Concept | Where |
+|---|---|
+| Encapsulation | GPA stored as a private attribute |
+| Inheritance | `Student` and course classes extend base classes |
+| Abstraction | A `Person` base class |
+| Polymorphism | Different course types |
 
----
+## Run it
 
-## 🛠️ Technologies Used
+Requires Python 3.9+.
 
-* Python
-* Streamlit
-* Object-Oriented Programming (OOP)
-
----
-
-## 🧠 Concepts Implemented
-
-This project applies key OOP principles:
-
-* **Encapsulation** → GPA stored as a private variable
-* **Inheritance** → Student and Course classes
-* **Abstraction** → Person base class
-* **Polymorphism** → Different course types
-
----
-
-## 📂 Project Structure
-
-```
-project-folder/
-│
-├── app.py              # Main Streamlit application
-├── README.md           # Project documentation
-└── requirements.txt    # Dependencies
-```
-
----
-
-## ⚙️ Installation & Setup
-
-### 1. Clone the repository
-
-```
-git clone https://github.com/your-username/edusphere-streamlit-app.git
-cd edusphere-streamlit-app
-```
-
-### 2. Install dependencies
-
-```
+```bash
+git clone https://github.com/Hammad-Ahmed-hk/streamlit-student-portal.git
+cd streamlit-student-portal
 pip install -r requirements.txt
+streamlit run Streamlit-student-portal.py
 ```
 
-### 3. Run the app
+## Logging in
+
+**Demo mode (default).** With no secrets configured, the login page shows a "Demo mode" hint and accepts `admin` / `@1234` or `Hammad` / `edu123`. These are public and protect nothing.
+
+**Your own logins.** Create `.streamlit/secrets.toml` (it is git-ignored). This switches the demo accounts off:
+
+```toml
+[users]
+alice = "a-strong-password"
+```
+
+On Streamlit Community Cloud, paste the same text into **App settings → Secrets**.
+
+## Project structure
 
 ```
-streamlit run app.py
+streamlit-student-portal/
+├── Streamlit-student-portal.py   # The app
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
----
+## Known limitations
 
-## 🔑 Default Login Credentials
+- Student records live in session memory, so they are lost when the session ends.
+- Passwords are compared as plain text, so this is not production authentication.
 
-| Username | Password |
-| -------- | -------- |
-| admin    | 1234     |
-| hammad   | edu123   |
+## Ideas for next steps
 
+- Store records in SQLite
+- Edit and delete students
+- Role-based access (admin and user)
+- Charts for class performance
 
-## 🎯 Future Improvements
+## Author
 
-* Database integration (SQLite / MySQL)
-* Role-based authentication (Admin/User)
-* Edit & Delete student records
-* Dashboard analytics and charts
-
----
-
-## 👨‍💻 Author
-
-**Hammad Ahmed**
-Aspiring AI & Machine Learning Engineer
-
----
-
-## 📄 License
-
-This project is for educational purposes and open for learning and improvement.
+Hammad Ahmed, [@Hammad-Ahmed-hk](https://github.com/Hammad-Ahmed-hk)
